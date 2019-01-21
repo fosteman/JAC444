@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.lang.Math;
 
-public class Task1 {
+public class HangmanGame{
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
