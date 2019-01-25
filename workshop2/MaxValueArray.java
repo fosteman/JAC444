@@ -3,20 +3,24 @@ import java.util.Scanner;
 public class MaxValueArray{
 	public static Location locateLargest(double[][] a) {
 		Location location = new Location(a);
-		location.maxValue = location.userArray[0][0];
+		location.setRowNum(a.length);
+		location.setColumnNum(a[0].length);
+		location.setMaxValue(location.getArrayNum(0, 0));
+		location.setMaxRow(0);
+		location.setMaxColumn(0);
 		int i, j;
 		
-		for(i = 0; i < location.userArray.length; i++) {
-			for(j = 0; j < location.userArray[0].length; j++) {
-				if(location.userArray[i][j] > location.maxValue) {
-					location.maxValue = location.userArray[i][j];
-					location.row = i;
-					location.column = j;
+		for(i = 0; i < location.getRowNum(); i++) {
+			for(j = 0; j < location.getColumnNum(); j++) {
+				if(location.getArrayNum(i, j) > location.getMaxValue()) {
+					location.setMaxValue(location.getArrayNum(i, j));
+					location.setMaxRow(i);
+					location.setMaxColumn(j);
 				}
 			}
 		}
 		
-		System.out.print("The location of the largest element is " + location.maxValue + " at (" + location.row + ", " + location.column + ")");
+		System.out.print("The location of the largest element is " + location.getMaxValue() + " at (" + location.getMaxRowNum() + ", " + location.getMaxColumnNum() + ")");
 		return location;
 	}
 
