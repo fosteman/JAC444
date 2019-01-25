@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.lang.Math;
 
-public class Task3 {
+public class CreditCardCheck{
 	
 	//method 1
 	public static boolean checkCreditValid(long cardNum) {

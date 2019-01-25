@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Task2 {
+public class MaxValueArray{
 	public static Location locateLargest(double[][] a) {
 		Location location = new Location(a);
 		location.maxValue = location.userArray[0][0];
