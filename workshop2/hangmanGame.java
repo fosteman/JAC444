@@ -5,12 +5,13 @@ public class HangmanGame{
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		String[] words = {"write", "that", "tplay", "tcode"};
-		int missedCount = 0;
+		String[] words = {"write", "that", "play", "code"};
+		int missedCount;
 		char YN;
 		
 		do {
 			char inputChar;
+			missedCount = 0;
 			String word = words[(int)(Math.random() * words.length)];		
 			String userAnswer = "";
 			String YNInput = "", userInput;
@@ -29,7 +30,7 @@ public class HangmanGame{
 					if(userInput.length() > 1) {
 						System.out.println("Only input letter, not string");
 					}
-				}while(userInput.length() == 0);
+				}while(userInput.length() == 0 || userInput.length() > 1);
 				
 				inputChar = userInput.charAt(0);
 				
@@ -60,6 +61,9 @@ public class HangmanGame{
 				System.out.print("Do you want to guess another word? Enter y or n> ");
 				YNInput = input.next();
 				YN = YNInput.charAt(0);
+				if(YN != 'y' && YN != 'Y' && YN != 'n' && YN != 'N') {
+					System.out.println("Please enter Y(y) or N(n)");
+				}
 			}while((YN != 'Y' && YN != 'y' && YN != 'N' && YN != 'n') || YNInput.length() > 1);
 			
 		} while(YN == 'Y' || YN == 'y');
