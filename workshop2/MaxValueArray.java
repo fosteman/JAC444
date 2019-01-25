@@ -22,23 +22,64 @@ public class Task2 {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		int i, j;
+		int i, j, rowNum = 0, columnNum = 0, inputRow = 0, inputColumn = 0;
+		double[][] userArray;
+		boolean flag = true;
 		
+		do{
+			System.out.print("Enter the number of rows and columns in the array: ");
+			
+			if(input.hasNextInt()) {
+				inputRow = input.nextInt();
+				if(inputRow < 0) {
+					System.out.println("Please enter positive number");
+				}else {
+					if(input.hasNextInt()) {
+						inputColumn = input.nextInt();
+						if(inputColumn < 0) {
+							System.out.println("Please enter positive number");
+						}else {
+							columnNum = inputColumn;
+							flag = false;
+						}
+					}else {
+						System.out.println("Please enter number");
+						input.next();
+					}
+				}
+			}else {
+				System.out.println("Please enter number");
+				input.next();
+				input.next();
+			}
+			
+		}while(flag);
 		
-		System.out.print("Enter the number of rows and columns in the array: ");
-		int rowNum = input.nextInt();
-		int columnNum = input.nextInt();
-		double[][] userArray = new double[rowNum][columnNum];
-		
+		rowNum = inputRow;
+		columnNum = inputColumn;
+		userArray = new double[rowNum][columnNum];
+			
 		System.out.println("Enter the array:");
 		for(i = 0; i < rowNum; i++) {
 			for(j = 0; j < columnNum; j++) {
-				userArray[i][j] = input.nextDouble();
+				boolean inputFlag = true;
+				do {
+					while(!input.hasNextDouble()) {
+						System.out.println("You didn't enter number at (" + i + ", " + j + ")");
+						input.next();
+						if(j != columnNum - 1) {
+							j++;
+						}else {
+							i++;
+						}
+					}
+					userArray[i][j] = input.nextDouble();
+					inputFlag = false;
+				}while(inputFlag);
 			}	
 		}
 		
 		locateLargest(userArray);
-		
 		
 	}
 

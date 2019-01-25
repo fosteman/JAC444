@@ -1,20 +1,24 @@
 import java.util.Scanner;
 import java.lang.Math;
 
-public class CreditCardCheck{
+public class Task3 {
 	
 	//method 1
 	public static boolean checkCreditValid(long cardNum) {
 		int validNum = 0;
-		if(cardPrefix(cardNum)) {
-			if(numOfDigit(cardNum) >= 13 && numOfDigit(cardNum) <= 16) {
+		if(numOfDigit(cardNum) >= 13 && numOfDigit(cardNum) <= 16) {
+			if(cardPrefix(cardNum)) {
 				validNum = SecondDigitDoubleSum(cardNum) + oddSum(cardNum);
 				if(validNum %10 == 0) {
 					return true;
 				}else {
 					return false;
 				}
-			}	
+			}else {
+				System.out.println("The prefix number is different");
+			}
+		}else {
+			System.out.println("The number of card number should between 13 and 16");
 		}
 		return false;
 	}
@@ -101,11 +105,28 @@ public class CreditCardCheck{
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		int creditCardLength = 0;
-		long creditCardNum;
+		long creditCardNum, inputCardNum = 0;
+		boolean flag = true;
 		
-		System.out.println("Enter a credit card number as a long integer:");
+		while(flag){
+			System.out.println("Enter a credit card number as a long integer:");
+			
+			while(!input.hasNextLong()) {
+				System.out.println("Please input number");
+				input.next();
+			}
+			
+			inputCardNum = input.nextLong();	
+			
+			if(inputCardNum < 0) {
+				System.out.println("Please enter positive number");
+			}else {
+				flag = false;
+			}	
+		}
+		
 		System.out.print("  ");
-		creditCardNum = input.nextLong();
+		creditCardNum = inputCardNum;
 		
 		if(checkCreditValid(creditCardNum)) {
 			System.out.println(creditCardNum + " is valid");
