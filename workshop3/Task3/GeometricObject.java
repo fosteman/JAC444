@@ -7,11 +7,4 @@ public class GeometricObject{
 	public void howToColor() {
 		
 	}
-	
-//	public GeometricObject() {
-//		
-//	}
-//	
-//	public GeometricObject(int objectNum) {
-//	}
 }
