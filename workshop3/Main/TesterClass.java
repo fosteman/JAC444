@@ -2,7 +2,10 @@ package Main;
 
 import java.util.Scanner;
 import Task1.Complex;
-
+import Task2.Bank;
+import Task2.BankManager;
+import Task3.GeometricObject;
+import Task3.Square;
 
 public class TesterClass {
 
@@ -61,7 +64,18 @@ public class TesterClass {
 		com1.multiply(com2);
 		com1.divide(com2);
 		com1.abs();
-
+		
+		//Task2
+		BankManager manager = new BankManager();
+		manager.safeResultPrint();
+		
+		//Task3
+		GeometricObject[] geoObj = new GeometricObject[5];
+		
+		for(int i = 0; i < 5; i++) {
+			geoObj[i] = new Square();
+			geoObj[i].howToColor();
+		}
 		
 	}
 
