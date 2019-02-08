@@ -9,10 +9,21 @@ public class BankLoan{
 		Scanner input = new Scanner(System.in);
 		double bankAmount;
 		this.loanBankId = bankId;
+		boolean flag = true;
 		
-		System.out.print("Amount: ");
-		bankAmount = input.nextDouble();
-		this.loanBankAmount = bankAmount;
+		do {
+			System.out.print("Amount: ");
+			if(input.hasNextDouble()) {
+				bankAmount = input.nextDouble();
+				this.loanBankAmount = bankAmount;
+				flag = false;
+
+			}else {
+				System.out.println("Please enter integar number");
+				input.next();
+			}
+		}while(flag);
+		
 	}
 	
 	public void setLoanBankAmount(double balance) {

@@ -1,6 +1,6 @@
 package Task3;
 
-public class GeometricObject{
+public abstract class GeometricObject{
 	String color;
 	boolean filled;
 	

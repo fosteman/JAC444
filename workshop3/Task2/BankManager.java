@@ -11,21 +11,44 @@ public class BankManager {
 		Scanner input = new Scanner(System.in);
 		int bankNum;
 		double assetLimit;
-		System.out.print("Number of banks: ");
-		bankNum = input.nextInt();
-		this.bankNum = bankNum;
+		boolean flag = true;
 		
-		System.out.print("Minimum asset limit: ");
-		assetLimit = input.nextDouble();
-		this.assetLimit = assetLimit;
+		do {
+			System.out.print("Number of banks: ");
+			if(input.hasNextInt()) {
+				bankNum = input.nextInt();
+				this.bankNum = bankNum;
+				flag = false;
 
-		bank = new Bank[bankNum];
+			}else {
+				System.out.println("Please enter integar number");
+				input.next();
+			}
+		}while(flag);
 		
-		for(int i = 0; i < bankNum; i++) {
+		flag = true;
+		
+		do {
+			System.out.print("Minimum asset limit: ");
+			if(input.hasNextDouble()) {
+				assetLimit = input.nextDouble();
+				this.assetLimit = assetLimit;
+				flag = false;
+
+			}else {
+				System.out.println("Please enter number");
+				input.next();
+			}
+		}while(flag);
+		
+
+		bank = new Bank[this.bankNum];
+		
+		for(int i = 0; i < this.bankNum; i++) {
 			bank[i] = new Bank(i);
 		}
 		
-		for(int i = 0; i < bankNum; i++) {
+		for(int i = 0; i < this.bankNum; i++) {
 			System.out.println("Bank#" + i);
 			bank[i].setBankLoan();
 		}
@@ -88,3 +111,4 @@ public class BankManager {
 	}
 	
 }
+

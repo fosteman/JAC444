@@ -23,20 +23,38 @@ public class Bank{
 		this.isSafe = true;
 		this.id = bankId;
 		double balance; 
+		boolean flag = true;
 		
-		System.out.println("Bank#" + this.id);
-		System.out.print("Balance: ");
-		balance = input.nextDouble();
-		this.balance = balance;
+		do {
+			System.out.print("Balance: ");
+			if(input.hasNextDouble()) {
+				balance = input.nextDouble();
+				this.balance = balance;;
+				flag = false;
+
+			}else {
+				System.out.println("Please enter integar number");
+				input.next();
+			}
+		}while(flag);
 	}
 	
 	public void setBankLoan() {
 		Scanner input = new Scanner(System.in);
 		int bankLoanNum;
-
-		System.out.print("Number of banks Loaned: ");
-		bankLoanNum = input.nextInt();
-		this.numBankLoan = bankLoanNum;
+		boolean flag = true;
+		
+		do {
+			System.out.print("Number of banks Loaned: ");
+			if(input.hasNextInt()) {
+				bankLoanNum = input.nextInt();
+				this.numBankLoan = bankLoanNum;
+				flag = false;
+			}else {
+				System.out.println("Please enter integar number");
+				input.next();
+			}
+		}while(flag);
 		
 		bankLoan = new BankLoan[this.numBankLoan];
 		
