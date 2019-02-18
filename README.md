@@ -25,5 +25,6 @@ Inheritance, Abstraction, Interface, and package
 
 ### Workshop4
 Error Handling, File Input/Output
-- Package Task1: Hangman.java
+- Package com.senecacollege.workshop4_task1: Hangman.java
+- Package com.senecacollege.workshop4_task2: CountLetter.java
 - Test Class: TesterClass.java
