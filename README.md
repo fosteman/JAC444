@@ -22,3 +22,8 @@ Inheritance, Abstraction, Interface, and package
 - Package Task1: Cloneable.java, Complex.java
 - Package Task2: Bank.java, BankLoan.java, BankManager.java
 - Package Task3: Colorable.java, GeometricObject.java, Octagon.java, Square.java, Triangle.java
+
+### Workshop4
+Error Handling, File Input/Output
+- Package Task1: Hangman.java
+- Test Class: TesterClass.java
