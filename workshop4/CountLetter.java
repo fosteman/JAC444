@@ -30,10 +30,10 @@ public class CountLetter {
 			
 			flag = false;
 		}catch(FileNotFoundException e) {
-			System.out.println("File Not Found");
+			System.err.println("File Not Found");
 			flag = true;
 		}catch(Exception e) {
-			System.out.println(e);
+			System.err.println(e);
 			flag = true;
 		}
 	}

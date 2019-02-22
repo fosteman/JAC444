@@ -23,9 +23,9 @@ public class Hangman {
 				words = line.split(" ");
 			}
 		}catch(FileNotFoundException e) {
-			System.out.println(e);
+			System.err.println(e);
 		}catch(Exception e) {
-			System.out.println(e);
+			System.err.println(e);
 		}
 
 	}
@@ -56,10 +56,10 @@ public class Hangman {
 						userInput = input.next();
 						
 						if(userInput.length() > 1) {
-							System.out.println("Only input letter, not string");
+							System.err.println("Only input letter, not string");
 						}
 					}catch(NoSuchElementException e) {
-						System.out.println(e);
+						System.err.println(e);
 					}
 				}while(userInput.length() == 0 || userInput.length() > 1);
 				
