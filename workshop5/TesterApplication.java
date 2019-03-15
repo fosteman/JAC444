@@ -49,7 +49,7 @@ public class TesterApplication extends Application {
 	    GridPane.setHalignment(btnExit, HPos.CENTER);
 	 
 	    Scene scene = new Scene(pane);
-	    primaryStage.setTitle("ShowGridPane"); // Set the stage title
+	    primaryStage.setTitle("Hyunji Lee - Workshop5"); // Set the stage title
 	    primaryStage.setScene(scene); // Place the scene in the stage
 	    primaryStage.show(); // Display the stage
 	    

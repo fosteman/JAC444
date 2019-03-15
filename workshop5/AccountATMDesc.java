@@ -16,6 +16,10 @@ import javafx.stage.Stage;
 public class AccountATMDesc extends Application {
 	
 	AccountATM accountAtm = new AccountATM();
+	AccountATMBalance accountBalance = new AccountATMBalance();
+	AccountATMWithdraw accountWithdraw = new AccountATMWithdraw();
+	AccountATMDeposit deposit = new AccountATMDeposit();
+	
 	private int pin;
 	
 	  public void start(Stage primaryStage, Account[] allAccount, Account account) {
@@ -28,7 +32,7 @@ public class AccountATMDesc extends Application {
 	    pane.setVgap(5.5);
 	    
 	    // Place nodes in the pane
-	    Label lblWelcome = new Label("Welcome Account" + account.getId());
+	    Label lblWelcome = new Label("Welcome! Account number: " + account.getId());
 	    GridPane.setHalignment(lblWelcome, HPos.CENTER);
 	    pane.add(lblWelcome, 0, 0);
 	    
@@ -36,34 +40,55 @@ public class AccountATMDesc extends Application {
 	    GridPane.setHalignment(lblWhatToDo, HPos.CENTER);
 	    pane.add(lblWhatToDo, 0, 1); 
 	    
-	    Button btChkBalance = new Button("Check Balance");
-	    pane.add(btChkBalance, 0, 2);
-	    GridPane.setHalignment(btChkBalance, HPos.CENTER)
+	    Button btnChkBalance = new Button("Check Balance");
+	    pane.add(btnChkBalance, 0, 2);
+	    GridPane.setHalignment(btnChkBalance, HPos.CENTER)
 	    ;
-	    Button btWithdrawMoney = new Button("Withdraw Money");
-	    pane.add(btWithdrawMoney, 0, 3);
-	    GridPane.setHalignment(btWithdrawMoney, HPos.CENTER);
+	    Button btnWithdraw = new Button("Withdraw Money");
+	    pane.add(btnWithdraw, 0, 3);
+	    GridPane.setHalignment(btnWithdraw, HPos.CENTER);
 	    
-	    Button depositMoney = new Button("Deposit Money");
-	    pane.add(depositMoney, 0, 4);
-	    GridPane.setHalignment(depositMoney, HPos.CENTER);
+	    Button btndeposit = new Button("Deposit Money");
+	    pane.add(btndeposit, 0, 4);
+	    GridPane.setHalignment(btndeposit, HPos.CENTER);
 	    
-	    Button exitAccount = new Button("Exit the Account");
-	    pane.add(exitAccount, 0, 5);
-	    GridPane.setHalignment(exitAccount, HPos.CENTER);
+	    Button btnExit = new Button("Exit the Account");
+	    pane.add(btnExit, 0, 5);
+	    GridPane.setHalignment(btnExit, HPos.CENTER);
 	 
 	    Scene scene = new Scene(pane);
-	    primaryStage.setTitle("ShowGridPane"); // Set the stage title
+	    primaryStage.setTitle("ATM Account"); // Set the stage title
 	    primaryStage.setScene(scene); // Place the scene in the stage
 	    primaryStage.show(); // Display the stage
 	    
-	    exitAccount.setOnAction(new EventHandler<ActionEvent>() {
+	    btnChkBalance.setOnAction(new EventHandler<ActionEvent>() {
+	    	@Override
+	    	public void handle(ActionEvent event) {
+	    		accountBalance.start(primaryStage, allAccount, account);
+	    	}
+	    });
+	    
+	    btnWithdraw.setOnAction(new EventHandler<ActionEvent>() {
+	    	@Override
+	    	public void handle(ActionEvent event) {
+	    		accountWithdraw.start(primaryStage, allAccount, account);
+	    	}
+	    });
+	    
+	    btndeposit.setOnAction(new EventHandler<ActionEvent>() {
+	    	@Override
+	    	public void handle(ActionEvent event) {
+	    		deposit.start(primaryStage, allAccount, account);
+	    	}
+	    });
+	    
+	    btnExit.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				accountAtm.start(primaryStage, allAccount);							
 			}
 		    	
-		  });
+		});
 	  }
 
 	@Override

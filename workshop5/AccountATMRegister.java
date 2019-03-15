@@ -1,5 +1,8 @@
 package com.senecacollege.workshop5.task1;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -72,9 +75,13 @@ public class AccountATMRegister extends Application {
 	    Button btnSubmit = new Button("Submit");
 	    pane.add(btnSubmit, 0, 9);
 	    GridPane.setHalignment(btnSubmit, HPos.CENTER);
+	    
+	    Button btnExit = new Button("Exit");
+	    pane.add(btnExit, 0, 10);
+	    GridPane.setHalignment(btnExit, HPos.CENTER);
 	 
 	    Scene scene = new Scene(pane);
-	    primaryStage.setTitle("ShowGridPane"); // Set the stage title
+	    primaryStage.setTitle("ATM Account Register"); // Set the stage title
 	    primaryStage.setScene(scene); // Place the scene in the stage
 	    primaryStage.show(); // Display the stage
 	    
@@ -84,7 +91,6 @@ public class AccountATMRegister extends Application {
 				
 				if(txtAccountNum.getText().isEmpty()) {
 					showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please enter your account number");
-					return;
 				}else {
 					account.setId(Integer.parseInt(txtAccountNum.getText()));
 					account.setBalance(Double.parseDouble(txtBalanceNum.getText()));
@@ -93,11 +99,30 @@ public class AccountATMRegister extends Application {
 					
 					account.print();
 					accountDesc.start(primaryStage, allAccount, account);
+					
+					try {
+						FileOutputStream fos = new FileOutputStream("account.dat");
+						ObjectOutputStream oos = new ObjectOutputStream(fos);
+						oos.writeObject(allAccount);
+						fos.close();
+						oos.close();
+					}catch(Exception e) {
+						System.out.println("Exception: " + e);
+					}
 				}
 							
 			}
 		    	
 		  });
+	    
+	    btnExit.setOnAction(new EventHandler<ActionEvent>(){
+	    	AccountATM accountATM = new AccountATM();
+	    	@Override
+	    	public void handle(ActionEvent event) {
+	    		showAlert(Alert.AlertType.INFORMATION, pane.getScene().getWindow(), "Not Register", "Didn't register your account");
+	    		accountATM.start(primaryStage, allAccount);
+	    	}
+	    });
 	  }
 	
 	private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {

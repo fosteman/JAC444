@@ -13,17 +13,12 @@ import java.io.*;
 public class TesterClass {
 
 	public static void main(String[] args){	
+		//task1, task2
 		Application.launch(TesterApplication.class);
-		
-		//task1
-		//Application.launch(AccountATM.class);
-		
-		//task2
-		//Application.launch(AddressBook.class);
 		
 		//task3
 		ConnectFour cf = new ConnectFour();
-		//cf.play();
+		cf.play();
 	}
 	
 

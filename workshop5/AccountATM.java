@@ -2,6 +2,8 @@ package com.senecacollege.workshop5.task1;
 
 import com.senecacollege.workshop5.task2.*;
 import com.senecacollege.workshop5.tester.*;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,16 +29,63 @@ public class AccountATM extends Application {
 
 	AddressBook addressBook = new AddressBook();
 	
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
 		AccountATM accountAtm = new AccountATM();
-		Account[] account = new Account[10];
-		for(int i = 0; i < 10; i++) {
-			account[i] = new Account(0, 100);
+		
+		try {
+			File fileExist = new File("account.dat");
+			FileInputStream fis;
+			Account[] account;
+			int empty;
+			
+			
+			if(fileExist.exists()) {
+				System.out.println("File exists");
+				fis = new FileInputStream("account.dat");
+				empty = fis.available();
+						
+				if(empty == 0) {
+					System.out.println("File empty");
+					
+					account = new Account[10];
+					for(int i = 0; i < 10; i++) {
+						account[i] = new Account(0, 100);
+					}
+					
+				}else {
+					System.out.println("File is not empty");
+					ObjectInputStream ois = new ObjectInputStream(fis);
+					
+					account = (Account[])ois.readObject();
+					
+					for(int i = 0; i < 10; i++) {
+						account[i].print();
+					}
+					
+					ois.close();
+				}
+			}else {
+				System.out.println("File not found");
+				FileOutputStream fos = new FileOutputStream("account.dat");
+				fis = new FileInputStream("account.dat");
+				
+				account = new Account[10];
+				for(int i = 0; i < 10; i++) {
+					account[i] = new Account(0, 100);
+				}
+				
+				fos.close();
+			}
+			
+			fis.close();
+			accountAtm.start(primaryStage, account);
+		}catch(Exception e) {
+			System.out.println("Exception: " + e);
 		}
 		
-		accountAtm.start(primaryStage, account);
+		
 	}
 
 	public void start(Stage primaryStage, Account[] account) {
@@ -44,8 +93,7 @@ public class AccountATM extends Application {
 	  
 	  AccountATMDesc accountDesc = new AccountATMDesc();
 	  AccountATMRegister accountRegister = new AccountATMRegister();
-	  
-	  
+	  AccountATMRmv accountRmv = new AccountATMRmv();
 	  
 	  GridPane pane1 = new GridPane();
 	  pane1.setAlignment(Pos.CENTER);
@@ -100,8 +148,12 @@ public class AccountATM extends Application {
 				
 				if(findAccount != -1) {
 					accountDesc.start(primaryStage, account, account[findAccount]);
-				}else {
+				}else if(findInitAccount != -1) {
+					showAlert(Alert.AlertType.INFORMATION, pane1.getScene().getWindow(), "Account Doesn't Exist!", "Please register your account number");
 					accountRegister.start(primaryStage, account, account[findInitAccount]);
+				}else {
+					showAlert(Alert.AlertType.INFORMATION, pane1.getScene().getWindow(), "Full account", "Account is already full in this ATM. Please use other ATM machines.");
+					accountRmv.start(primaryStage, account);
 				}
 			}
 						
@@ -132,8 +184,6 @@ public class AccountATM extends Application {
 				ois.close();
 				
 				testerApp.start(primaryStage);
-			}catch(IOException e) {
-				System.err.println("IOException occurs");
 			}catch(Exception e) {
 				System.err.println("Exception occurs");
 			}
