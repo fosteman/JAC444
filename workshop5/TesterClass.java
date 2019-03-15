@@ -12,8 +12,8 @@ import java.io.*;
 
 public class TesterClass {
 
-	public static void main(String[] args){
-		//Scanner input = new Scanner(System.in);
+	public static void main(String[] args){	
+		Application.launch(TesterApplication.class);
 		
 		//task1
 		//Application.launch(AccountATM.class);
@@ -23,7 +23,7 @@ public class TesterClass {
 		
 		//task3
 		ConnectFour cf = new ConnectFour();
-		cf.play();
+		//cf.play();
 	}
 	
 

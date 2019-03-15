@@ -3,7 +3,15 @@ package com.senecacollege.workshop5.task2;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.senecacollege.workshop5.task1.Account;
+import com.senecacollege.workshop5.tester.TesterApplication;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.RandomAccessFile;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -113,6 +121,10 @@ public class AddressBook extends Application{
 		  Button btnUpdate = new Button("Update");
 		  pane1.add(btnUpdate, 1, 7);
 		  GridPane.setHalignment(btnUpdate, HPos.LEFT);
+		  
+		  Button btnExit = new Button("Exit Address Book");
+		  pane1.add(btnExit, 1, 8);
+		  GridPane.setHalignment(btnExit, HPos.LEFT);
 		    
 		  Scene scene = new Scene(pane1);
 		  primaryStage.setTitle("Address Book"); // Set the stage title
@@ -334,6 +346,18 @@ public class AddressBook extends Application{
 						System.err.println("Exception: " + e);
 					}
 					
+				}
+		  });
+		  
+		  btnExit.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					TesterApplication testerApp = new TesterApplication();
+					try {
+						testerApp.start(primaryStage);
+					}catch(Exception e) {
+						System.err.println("Exception occurs");
+					}
 				}
 		  });
 	  }

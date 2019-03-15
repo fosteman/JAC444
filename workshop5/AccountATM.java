@@ -1,5 +1,7 @@
 package com.senecacollege.workshop5.task1;
 
+import com.senecacollege.workshop5.task2.*;
+import com.senecacollege.workshop5.tester.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,6 +24,8 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class AccountATM extends Application {
+
+	AddressBook addressBook = new AddressBook();
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -108,6 +112,7 @@ public class AccountATM extends Application {
 	  btnExit.setOnAction(new EventHandler<ActionEvent>() {
 		@Override
 		public void handle(ActionEvent event) {
+			TesterApplication testerApp = new TesterApplication();
 			try {
 				FileOutputStream fos = new FileOutputStream("account.dat");
 				ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -125,7 +130,8 @@ public class AccountATM extends Application {
 					
 				fis.close();
 				ois.close();
-				primaryStage.close();
+				
+				testerApp.start(primaryStage);
 			}catch(IOException e) {
 				System.err.println("IOException occurs");
 			}catch(Exception e) {
