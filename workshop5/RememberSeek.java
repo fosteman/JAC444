@@ -4,7 +4,11 @@ public class RememberSeek {
 	private long seekNum;
 	
 	public RememberSeek() {
-		seekNum = -1;
+		this.seekNum = -1;
+	}
+	
+	public RememberSeek(long seekNum) {
+		this.seekNum = seekNum;
 	}
 	
 	public long getSeekNum() {

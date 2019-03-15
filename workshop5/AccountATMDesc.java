@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class AccountATMDesc extends Application {
 	
@@ -85,6 +86,7 @@ public class AccountATMDesc extends Application {
 	    btnExit.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				showAlert(Alert.AlertType.INFORMATION, pane.getScene().getWindow(), "Bye-bye!", "Thank you for using this ATM!\nGood bye account number: " + account.getId());
 				accountAtm.start(primaryStage, allAccount);							
 			}
 		    	
@@ -96,4 +98,13 @@ public class AccountATMDesc extends Application {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	  private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+		  	Alert alert = new Alert(alertType);
+		  	alert.setTitle(title);
+		  	alert.setHeaderText(null);
+		  	alert.setContentText(message);
+		  	alert.initOwner(owner);
+		  	alert.show();
+		  }
 }

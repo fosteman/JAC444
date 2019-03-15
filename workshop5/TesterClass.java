@@ -17,8 +17,8 @@ public class TesterClass {
 		Application.launch(TesterApplication.class);
 		
 		//task3
-		ConnectFour cf = new ConnectFour();
-		cf.play();
+		//ConnectFour cf = new ConnectFour();
+		//cf.play();
 	}
 	
 
