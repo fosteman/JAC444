@@ -88,9 +88,11 @@ public class AccountATMRegister extends Application {
 	    btnSubmit.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				boolean isEmpty = txtAccountNum.getText().isEmpty() || txtBalanceNum.getText().isEmpty() 
+								|| txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty();
 				
-				if(txtAccountNum.getText().isEmpty()) {
-					showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please enter your account number");
+				if(isEmpty) {
+					showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please fill in the blank");
 				}else {
 					account.setId(Integer.parseInt(txtAccountNum.getText()));
 					account.setBalance(Double.parseDouble(txtBalanceNum.getText()));

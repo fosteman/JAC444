@@ -75,10 +75,10 @@ public class AccountATMWithdraw extends Application {
 					showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please enter your deposit price");
 					//return;
 				}else {
-					if(Integer.parseInt(txtWithNum.getText()) > account.getBalance()) {
+					if(Double.parseDouble(txtWithNum.getText()) > account.getBalance()) {
 						showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Price is over your balance");
 					}else {
-						account.withdraw(Integer.parseInt(txtWithNum.getText()));
+						account.withdraw(Double.parseDouble(txtWithNum.getText()));
 						showAlert(Alert.AlertType.CONFIRMATION, pane.getScene().getWindow(), "Withdraw Success!", "$" + 
 								txtWithNum.getText() +  " Successfully withdraw\nBalance: " + account.getBalance());
 					}

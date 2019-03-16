@@ -72,7 +72,7 @@ public class AccountATMDeposit extends Application {
 					showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please enter your deposit price");
 					//return;
 				}else {
-					account.deposit(Integer.parseInt(txtDepositNum.getText()));
+					account.deposit(Double.parseDouble(txtDepositNum.getText()));
 					showAlert(Alert.AlertType.CONFIRMATION, pane.getScene().getWindow(), "Deposit Success!", "$" + 
 							txtDepositNum.getText() +  " Successfully deposit\nBalance: " + account.getBalance());
 					

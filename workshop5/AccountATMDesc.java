@@ -33,28 +33,32 @@ public class AccountATMDesc extends Application {
 	    pane.setVgap(5.5);
 	    
 	    // Place nodes in the pane
-	    Label lblWelcome = new Label("Welcome! Account number: " + account.getId());
+	    Label lblWelcome = new Label("Welcome! " + account.getFirstName() + " " + account.getLastName());
 	    GridPane.setHalignment(lblWelcome, HPos.CENTER);
 	    pane.add(lblWelcome, 0, 0);
 	    
+	    Label lblAccountNum = new Label("Account number: " + account.getId());
+	    GridPane.setHalignment(lblAccountNum, HPos.CENTER);
+	    pane.add(lblAccountNum, 0, 1);
+	    
 	    Label lblWhatToDo = new Label("What would you like to do?");
 	    GridPane.setHalignment(lblWhatToDo, HPos.CENTER);
-	    pane.add(lblWhatToDo, 0, 1); 
+	    pane.add(lblWhatToDo, 0, 2); 
 	    
 	    Button btnChkBalance = new Button("Check Balance");
-	    pane.add(btnChkBalance, 0, 2);
+	    pane.add(btnChkBalance, 0, 3);
 	    GridPane.setHalignment(btnChkBalance, HPos.CENTER)
 	    ;
 	    Button btnWithdraw = new Button("Withdraw Money");
-	    pane.add(btnWithdraw, 0, 3);
+	    pane.add(btnWithdraw, 0, 4);
 	    GridPane.setHalignment(btnWithdraw, HPos.CENTER);
 	    
 	    Button btndeposit = new Button("Deposit Money");
-	    pane.add(btndeposit, 0, 4);
+	    pane.add(btndeposit, 0, 5);
 	    GridPane.setHalignment(btndeposit, HPos.CENTER);
 	    
 	    Button btnExit = new Button("Exit the Account");
-	    pane.add(btnExit, 0, 5);
+	    pane.add(btnExit, 0, 6);
 	    GridPane.setHalignment(btnExit, HPos.CENTER);
 	 
 	    Scene scene = new Scene(pane);
@@ -86,7 +90,8 @@ public class AccountATMDesc extends Application {
 	    btnExit.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				showAlert(Alert.AlertType.INFORMATION, pane.getScene().getWindow(), "Bye-bye!", "Thank you for using this ATM!\nGood bye account number: " + account.getId());
+				showAlert(Alert.AlertType.INFORMATION, pane.getScene().getWindow(), "Bye-bye!", "Thank you for using this ATM!\nGood bye "
+																	+ account.getFirstName() + " " + account.getLastName() + "\n" + "Account number: " + account.getId());
 				accountAtm.start(primaryStage, allAccount);							
 			}
 		    	

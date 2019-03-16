@@ -110,12 +110,13 @@ public class AccountATM extends Application {
 	  GridPane.setHalignment(txtAccountNum, HPos.CENTER);
 	  pane1.add(txtAccountNum, 1, 0);
 	  
+	  
 	  Button btnSubmit = new Button("Submit");
-	  pane1.add(btnSubmit, 1, 3);
+	  pane1.add(btnSubmit, 1, 1);
 	  GridPane.setHalignment(btnSubmit, HPos.RIGHT);
 	    
 	  Button btnExit = new Button("Exit");
-	  pane1.add(btnExit, 1,4);
+	  pane1.add(btnExit, 1,2);
 	  GridPane.setHalignment(btnExit, HPos.RIGHT);
 	    
 	  Scene scene = new Scene(pane1);
@@ -149,7 +150,7 @@ public class AccountATM extends Application {
 				if(findAccount != -1) {
 					accountDesc.start(primaryStage, account, account[findAccount]);
 				}else if(findInitAccount != -1) {
-					showAlert(Alert.AlertType.INFORMATION, pane1.getScene().getWindow(), "Account Doesn't Exist!", "Please register your account number");
+					showAlert(Alert.AlertType.INFORMATION, pane1.getScene().getWindow(), "Account Doesn't Exist!", "You don't have account\nPlease register your account number");
 					accountRegister.start(primaryStage, account, account[findInitAccount]);
 				}else {
 					showAlert(Alert.AlertType.INFORMATION, pane1.getScene().getWindow(), "Full account", "Account is already full in this ATM. Please use other ATM machines.");
