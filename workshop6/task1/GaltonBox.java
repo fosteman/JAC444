@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GaltonBox {
-	private int ballNum, slotNum, slotBall[];
+	private int ballNum, slotNum, slotBall[], slotBallMax;
 	
 	public GaltonBox() {
 		ballNum = 0;
@@ -30,6 +30,10 @@ public class GaltonBox {
 			try {
 				whichNum = input.nextInt();
 				whileFlag = false;
+				if(whichNum < 1) {
+					System.err.println("Please enter more than 1 number");
+					input.next();
+				}
 			}catch(InputMismatchException e) {
 				System.err.println("Please enter number");
 				input.next();
@@ -44,12 +48,12 @@ public class GaltonBox {
 	}
 	
 	public void slotBallInitialize() {
-		this.slotBall = new int[this.slotNum - 1];
+		this.slotBall = new int[this.slotNum];
 		for(int i = 0; i < slotBall.length; i++) {
 			slotBall[i] = 0;
 		}
 		
-		System.out.println("Slot initialized");
+		slotBallMax = 0;
 		
 	}
 	
@@ -88,6 +92,44 @@ public class GaltonBox {
 		return playFlag;
 	}
 	
+	public void ballRouteTrace() {
+		for(int i = 0; i < this.ballNum; i++) {
+			int count = 0;
+			for(int j = 0; j < this.slotNum - 1; j++) {
+				int ranNum = (int)Math.ceil(Math.random() * 2) - 1;
+				String leftRight;
+				
+				if(ranNum == 0) {
+					leftRight = "L";
+				}else {
+					leftRight = "R";
+					count++;
+				}
+				System.out.print(leftRight);
+			}
+			this.slotBall[count]++;
+			if(this.slotBallMax < this.slotBall[count])
+				this.slotBallMax = this.slotBall[count];
+			
+			System.out.println();
+		}
+	}
+	
+	public void slotBallDisplay() {
+		String[][] slotShow = new String[this.slotBallMax][this.slotNum];
+			
+		for(int i = 0; i < this.slotBallMax; i++) {
+			for(int j = 0; j < this.slotNum; j++) {
+				if(this.slotBallMax - this.slotBall[j] <= i)
+					System.out.print("O");
+				else
+					System.out.print(" ");
+			}
+			System.out.println();
+		}
+
+	}
+	
 	public void playGame() {
 		Scanner input =  new Scanner(System.in);
 		boolean whileFlag, playFlag = true;
@@ -100,6 +142,8 @@ public class GaltonBox {
 			this.slotNum = numberInput("Enter the number of slots in the bean machine: ");	
 			
 			slotBallInitialize();
+			ballRouteTrace();
+			slotBallDisplay();
 			
 			playFlag = playAgainCheck(playFlag);
 			
