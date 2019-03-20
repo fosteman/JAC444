@@ -24,14 +24,16 @@ public class PopulationRank {
 		int rank = -1;
 		
 		if(gender.equals("M")) {
+			System.out.println("Works");
 			for(int i = 0; i < 1000; i++) {
 				if(boyName[i].equals(name)) {
 					rank = i + 1;
 				}
 			}
 		}else {
+			System.out.println("works2");
 			for(int i = 0; i < 1000; i++) {
-				if(girlName.equals(name)) {
+				if(girlName[i].equals(name)) {
 					rank = i + 1;
 				}
 			}

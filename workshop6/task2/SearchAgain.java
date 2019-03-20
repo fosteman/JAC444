@@ -75,6 +75,7 @@ public class SearchAgain extends Application {
 							}
 							
 						}else {
+							showAlert(Alert.AlertType.INFORMATION, pane.getScene().getWindow(), "Bye bye", "Bye bye!");	
 							primaryStage.close();						
 						}
 					}

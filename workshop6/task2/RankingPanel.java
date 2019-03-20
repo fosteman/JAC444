@@ -82,6 +82,7 @@ public class RankingPanel extends Application {
 				
 				String gender = txtGender.getText();
 				String year = txtYear.getText();
+				int yearInt = Integer.parseInt(year);
 				String name = txtName.getText();
 //				System.out.println(gender.equals("M"));
 //				gender == "M"
@@ -90,7 +91,15 @@ public class RankingPanel extends Application {
 					showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please fill in the blank");
 				}else {
 					if(!gender.equals("M") && !gender.equals("F")) {
-						showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please enter M or F in the Name box");	
+						if(yearInt < 2001 || yearInt > 2010) {
+							showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please enter M or F in the Name box\n"
+																										+ "Please enter between 2001 and 2010 in the Year box");	
+						}else {
+							showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please enter M or F in the Name box");	
+						}
+						
+					}else if(yearInt < 2001 || yearInt > 2010) {
+						showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please enter between 2001 and 2010 in the Year box");	
 					}else {
 						int rank;
 						
