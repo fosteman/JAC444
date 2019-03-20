@@ -9,10 +9,10 @@ import java.util.StringTokenizer;
 public class TesterClass {
 	public static void main(String[] args) {
 		//task1
-//		GaltonBox galtonBox = new GaltonBox();
-//		galtonBox.playGame();
+		GaltonBox galtonBox = new GaltonBox();
+		galtonBox.playGame();
 		
 		//task2
-		Application.launch(RankingPanel.class);
+		//Application.launch(RankingPanel.class);
 	}
 }

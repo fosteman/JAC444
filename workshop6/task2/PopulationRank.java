@@ -1,45 +1,48 @@
 package com.senecacollege.workshop6.task2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
+import java.util.function.UnaryOperator;
 
 public class PopulationRank {
-	String rank[];
-	String boyNum[];
-	String girlNum[];
-	String boyName[];
-	String girlName[];
+	List rank;
+	List boyNum;
+	List girlNum;
+	List boyName;
+	List girlName;
 	
 	public PopulationRank() {
-		rank = new String[1000];
-		boyNum = new String[1000];
-		girlNum = new String[1000];
-		boyName = new String[1000];
-		girlName = new String[1000];
+		rank = new ArrayList();
+		boyNum = new ArrayList();
+		girlNum = new ArrayList();
+		boyName = new ArrayList();
+		girlName = new ArrayList();
 	}
 	
 	public int findName(String gender, String name) {
-		int rank = -1;
+		int rankNum = -1;	
+		List list = new ArrayList();
+		UnaryOperator<String> uo = (x)->x.toUpperCase();
 		
 		if(gender.equals("M")) {
-			System.out.println("Works");
-			for(int i = 0; i < 1000; i++) {
-				if(boyName[i].equals(name)) {
-					rank = i + 1;
-				}
+			System.out.println("Works");			
+			boyName.replaceAll(uo);
+			if(boyName.contains(name.toUpperCase())) {
+				rankNum = boyName.indexOf(name.toUpperCase()) + 1;
 			}
 		}else {
 			System.out.println("works2");
-			for(int i = 0; i < 1000; i++) {
-				if(girlName[i].equals(name)) {
-					rank = i + 1;
-				}
+			girlName.replaceAll(uo);
+			if(girlName.contains(name.toUpperCase())) {
+				rankNum = girlName.indexOf(name.toUpperCase()) + 1;
 			}
 		}
 			
-		return rank;
+		return rankNum;
 	}
 	
 	public void getFileInfo(String fileName) {
@@ -48,28 +51,31 @@ public class PopulationRank {
 			reader = new BufferedReader(new FileReader("babynamesranking" + fileName + ".txt"));
 			String line = reader.readLine();
 			int count = 0;
+			
 			while(line != null) {							
 				StringTokenizer token;
 				
 				try {
 					if(line != null) {
-						token = new StringTokenizer(line);
-						
-						rank[count] = token.nextToken();
-						boyName[count] = token.nextToken();
-						boyNum[count] = token.nextToken();
-						girlName[count] = token.nextToken();
-						girlNum[count] = token.nextToken();
-					}
+					token = new StringTokenizer(line);
+					
+					rank.add(token.nextToken());
+					boyName.add(token.nextToken());
+					boyNum.add(token.nextToken());
+					girlName.add(token.nextToken());
+					girlNum.add(token.nextToken());
+					
+				}
 						
 				}catch(Exception e) {
 					System.out.println("Exception: " + e);
 				}
 				
 				line = reader.readLine();
-				count++;
 			}
 			reader.close();
+			count++;
+			
 			
 		}catch(IOException e) {
 			System.out.println("Exception: " + e);
