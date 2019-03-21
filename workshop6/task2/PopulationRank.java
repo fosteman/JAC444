@@ -23,19 +23,25 @@ public class PopulationRank {
 		girlName = new ArrayList();
 	}
 	
+	public void initialize() {
+		rank.clear();
+		boyNum.clear();
+		girlNum.clear();
+		boyName.clear();
+		girlName.clear();
+	}
+	
 	public int findName(String gender, String name) {
 		int rankNum = -1;	
 		List list = new ArrayList();
 		UnaryOperator<String> uo = (x)->x.toUpperCase();
 		
-		if(gender.equals("M")) {
-			System.out.println("Works");			
+		if(gender.equals("M")) {			
 			boyName.replaceAll(uo);
 			if(boyName.contains(name.toUpperCase())) {
 				rankNum = boyName.indexOf(name.toUpperCase()) + 1;
 			}
 		}else {
-			System.out.println("works2");
 			girlName.replaceAll(uo);
 			if(girlName.contains(name.toUpperCase())) {
 				rankNum = girlName.indexOf(name.toUpperCase()) + 1;

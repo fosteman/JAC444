@@ -13,6 +13,6 @@ public class TesterClass {
 		galtonBox.playGame();
 		
 		//task2
-		//Application.launch(RankingPanel.class);
+		Application.launch(RankingPanel.class);
 	}
 }

@@ -2,14 +2,18 @@ package com.senecacollege.workshop6.task1;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GaltonBox {
 	private int ballNum, slotNum, slotBall[], slotBallMax;
+	List slotBallList;
 	
 	public GaltonBox() {
 		ballNum = 0;
 		slotNum = 0;
 		slotBall = null;
+		slotBallList = new ArrayList();
 	}
 	
 	public void setBallNum(int ballNum) {
@@ -53,6 +57,9 @@ public class GaltonBox {
 			slotBall[i] = 0;
 		}
 		
+		for(int i = 0; i < slotBall.length; i++)
+			slotBallList.add(0);
+		
 		slotBallMax = 0;
 		
 	}
@@ -93,6 +100,7 @@ public class GaltonBox {
 	}
 	
 	public void ballRouteTrace() {
+		System.out.println();
 		for(int i = 0; i < this.ballNum; i++) {
 			int count = 0;
 			for(int j = 0; j < this.slotNum - 1; j++) {
@@ -107,12 +115,15 @@ public class GaltonBox {
 				}
 				System.out.print(leftRight);
 			}
+//			int listBallNum = (int)this.slotBallList.get(count);
+//			this.slotBallList.set(count, listBallNum + 1);
 			this.slotBall[count]++;
 			if(this.slotBallMax < this.slotBall[count])
 				this.slotBallMax = this.slotBall[count];
-			
 			System.out.println();
 		}
+		
+		System.out.println();
 	}
 	
 	public void slotBallDisplay() {

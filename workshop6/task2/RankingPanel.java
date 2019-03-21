@@ -102,6 +102,7 @@ public class RankingPanel extends Application {
 						showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please enter between 2001 and 2010 in the Year box");	
 					}else {
 						int rank;
+						popRank.initialize();
 						
 						if(gender.equals("M")) {
 							popRank.getFileInfo(year);
@@ -109,7 +110,7 @@ public class RankingPanel extends Application {
 							if(rank != -1) {
 								lblResult.setText("Boy name " + txtName.getText() + " is ranked #" + rank + " in " + txtYear.getText() + " year.");
 							}else {
-								lblResult.setText("No result");
+								lblResult.setText("Boy name " + txtName.getText() + " in " + year + ": No result");
 							}
 							
 						}else {
@@ -118,7 +119,7 @@ public class RankingPanel extends Application {
 							if(rank != -1) {
 								lblResult.setText("Girl name " + txtName.getText() + " is ranked #" + rank + " in " + txtYear.getText() + " year.");
 							}else {
-								lblResult.setText("No result");
+								lblResult.setText("Girl name " + txtName.getText() + " in " + year + ": No result");
 							}							
 						}
 					}

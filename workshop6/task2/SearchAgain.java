@@ -88,7 +88,12 @@ public class SearchAgain extends Application {
 
 	    	@Override
 	    	public void handle(ActionEvent event) {
-	    		primaryStage.close();
+	    		RankingPanel rankPan = new RankingPanel();
+				try {
+					rankPan.start(primaryStage);
+				}catch(Exception e) {
+					System.out.println("Exception: " + e);
+				}
 	    	}
 	    });
 	}
