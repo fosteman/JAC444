@@ -1,3 +1,26 @@
+
+/**********************************************
+
+Workshop #6
+
+Course:JAC444 - Winter Semester
+
+Last Name:Lee
+
+First Name:Hyunji
+
+ID:145732178
+
+Section:C
+
+This assignment represents my own work in accordance with Seneca Academic Policy.
+
+Signature Hyunji Lee
+
+Date:21 March 2019
+
+**********************************************/
+
 package com.senecacollege.workshop6.task2;
 
 import javafx.application.Application;
@@ -78,18 +101,20 @@ public class RankingPanel extends Application {
 	    btnSubmit.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				System.out.println(txtYear.getText().isEmpty());
+				System.out.println(txtGender.getText().isEmpty());
+				System.out.println(txtName.getText().isEmpty());
 				boolean isEmpty = txtYear.getText().isEmpty() || txtGender.getText().isEmpty() || txtName.getText().isEmpty();
 				
-				String gender = txtGender.getText();
-				String year = txtYear.getText();
-				int yearInt = Integer.parseInt(year);
-				String name = txtName.getText();
-//				System.out.println(gender.equals("M"));
-//				gender == "M"
+				System.out.println(isEmpty);
 				
 				if(isEmpty) {
 					showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please fill in the blank");
 				}else {
+					String gender = txtGender.getText();
+					String year = txtYear.getText();
+					int yearInt = Integer.parseInt(year);
+					String name = txtName.getText();
 					if(!gender.equals("M") && !gender.equals("F")) {
 						if(yearInt < 2001 || yearInt > 2010) {
 							showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please enter M or F in the Name box\n"

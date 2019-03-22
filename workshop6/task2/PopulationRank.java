@@ -1,3 +1,26 @@
+
+/**********************************************
+
+Workshop #6
+
+Course:JAC444 - Winter Semester
+
+Last Name:Lee
+
+First Name:Hyunji
+
+ID:145732178
+
+Section:C
+
+This assignment represents my own work in accordance with Seneca Academic Policy.
+
+Signature Hyunji Lee
+
+Date:21 March 2019
+
+**********************************************/
+
 package com.senecacollege.workshop6.task2;
 
 import java.util.ArrayList;

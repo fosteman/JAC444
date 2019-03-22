@@ -1,3 +1,26 @@
+
+/**********************************************
+
+Workshop #6
+
+Course:JAC444 - Winter Semester
+
+Last Name:Lee
+
+First Name:Hyunji
+
+ID:145732178
+
+Section:C
+
+This assignment represents my own work in accordance with Seneca Academic Policy.
+
+Signature Hyunji Lee
+
+Date:21 March 2019
+
+**********************************************/
+
 package com.senecacollege.workshop6.task1;
 
 import java.util.InputMismatchException;
@@ -7,13 +30,11 @@ import java.util.List;
 
 public class GaltonBox {
 	private int ballNum, slotNum, slotBall[], slotBallMax;
-	List slotBallList;
 	
 	public GaltonBox() {
 		ballNum = 0;
 		slotNum = 0;
 		slotBall = null;
-		slotBallList = new ArrayList();
 	}
 	
 	public void setBallNum(int ballNum) {
@@ -56,9 +77,6 @@ public class GaltonBox {
 		for(int i = 0; i < slotBall.length; i++) {
 			slotBall[i] = 0;
 		}
-		
-		for(int i = 0; i < slotBall.length; i++)
-			slotBallList.add(0);
 		
 		slotBallMax = 0;
 		
@@ -115,8 +133,6 @@ public class GaltonBox {
 				}
 				System.out.print(leftRight);
 			}
-//			int listBallNum = (int)this.slotBallList.get(count);
-//			this.slotBallList.set(count, listBallNum + 1);
 			this.slotBall[count]++;
 			if(this.slotBallMax < this.slotBall[count])
 				this.slotBallMax = this.slotBall[count];
