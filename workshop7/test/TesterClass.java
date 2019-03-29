@@ -1,3 +1,25 @@
+/**********************************************
+
+Workshop #7
+
+Course:JAC444 - Winter Semester
+
+Last Name: Lee
+
+First Name: Hyunji
+
+ID: 145732178
+
+Section: SCC
+
+This assignment represents my own work in accordance with Seneca Academic Policy.
+
+Signature Hyunji Lee
+
+Date: 29/3/2019
+
+**********************************************/
+
 package com.senecacollege.workshop7.test;
 
 import com.senecacollege.workshop7.task1.*;

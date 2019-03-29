@@ -1,3 +1,25 @@
+/**********************************************
+
+Workshop #7
+
+Course:JAC444 - Winter Semester
+
+Last Name: Lee
+
+First Name: Hyunji
+
+ID: 145732178
+
+Section: SCC
+
+This assignment represents my own work in accordance with Seneca Academic Policy.
+
+Signature Hyunji Lee
+
+Date: 29/3/2019
+
+**********************************************/
+
 package com.senecacollege.workshop7.task1;
 
 import java.util.*;
@@ -31,9 +53,8 @@ public class QuizPanel extends Application {
 	}	
 	
 	public void start(Stage primaryStage, int num1, int num2, Set storeNum) throws Exception{
-		
 		this.setNum = storeNum;
-		System.out.println(setNum);
+
 		GridPane pane = new GridPane();
 	    pane.setAlignment(Pos.CENTER);
 	    pane.setPadding(new Insets(11.5, 120, 11.5, 120));
@@ -95,11 +116,15 @@ public class QuizPanel extends Application {
 	    
 	    Button btnSubmit = new Button("Check Answer");
 	    pane.add(btnSubmit, 0, 7);
-	    GridPane.setHalignment(btnSubmit, HPos.CENTER);
+	    GridPane.setHalignment(btnSubmit, HPos.LEFT);
 	    
 	    Button btnReset = new Button("Reset Number");
-	    pane.add(btnReset, 1, 7);
-	    GridPane.setHalignment(btnReset, HPos.CENTER);
+	    pane.add(btnReset, 0, 7);
+	    GridPane.setHalignment(btnReset, HPos.RIGHT);
+	    
+	    Button btnExit = new Button("Exit");
+	    pane.add(btnExit, 1, 7);
+	    GridPane.setHalignment(btnExit, HPos.RIGHT);
 	        
 	    Scene scene = new Scene(pane);
 	    primaryStage.setTitle("Quiz Application"); // Set the stage title
@@ -115,62 +140,56 @@ public class QuizPanel extends Application {
 				if(isEmpty) {
 					showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please fill in the blank");
 				}else {
-					int correct = 0;
-					int wrong = 0;
-					int add = Integer.parseInt(txtAdd.getText());
-					int sub = Integer.parseInt(txtSub.getText());
-					int mul = Integer.parseInt(txtMul.getText());
-					double div = Double.parseDouble(txtDiv.getText());
-					StoreNum store = new StoreNum(add, sub, mul, div);
-					
-					if(num1 + num2 == add) {
-						correct++;
-						System.out.println("right" + (num1 + num2));
-					}else {
-						wrong++;
-						System.out.println("wrong" + (num1 + num2));
-					}
-					
-					if(num1 - num2 == sub) {
-						correct++;
-						System.out.println("right" + (num1 - num2));
-					}else {
-						wrong++;
-						System.out.println("wrong" + (num1 - num2));
-					}
-					
-					if(num1 * num2 == mul) {
-						correct++;
-						System.out.println("right" + (num1 * num2));
-					}else {
-						wrong++;
-						System.out.println("wrong" + (num1 * num2));
-					}
-					
-					double divAnsr = (double)num1 / (double)num2;
-					
-					if((int)(divAnsr * 100) == div * 100) {
-						correct++;
-						System.out.println(divAnsr);
-					}else {
-						wrong++;
-						System.out.println("wrong: " + divAnsr);
-					}
+					try {
+						int correct = 0;
+						int wrong = 0;
+						int add = Integer.parseInt(txtAdd.getText());
+						int sub = Integer.parseInt(txtSub.getText());
+						int mul = Integer.parseInt(txtMul.getText());
+						double div = Double.parseDouble(txtDiv.getText());
+						
+						StoreNum store = new StoreNum(add, sub, mul, div);
+						
+						if(num1 + num2 == add) {
+							correct++;
+						}else {
+							wrong++;
+						}
+						
+						if(num1 - num2 == sub) {
+							correct++;
+						}else {
+							wrong++;
+						}
+						
+						if(num1 * num2 == mul) {
+							correct++;
+						}else {
+							wrong++;
+						}
+						
+						double divAnsr = (double)num1 / (double)num2;
+						
+						if((int)(divAnsr * 100) == div * 100) {
+							correct++;
+						}else {
+							wrong++;
+						}
 
-					lblCorrectAnsw.setText("Number of Correct Answers: " + correct);
-					lblWrngAnsw.setText("Number of Wrong Answers: " + wrong);
-					
-					store.setCorrectNum(correct);
-					store.setWrongNum(wrong);
-					
-					setNum.add(store);
-					Iterator<StoreNum> i = setNum.iterator();
-					while(i.hasNext()) {
-						System.out.println(i.next());
-						store.getInfo();
+						lblCorrectAnsw.setText("Number of Correct Answers: " + correct);
+						lblWrngAnsw.setText("Number of Wrong Answers: " + wrong);
+						
+						store.setCorrectNum(correct);
+						store.setWrongNum(wrong);
+						
+						setNum.add(store);
+
+						System.out.println(setNum);
+					}catch(NumberFormatException e) {
+						showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Please write number in the blank");
+					}catch(Exception e) {
+						showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Error!", "Exception occurs!");
 					}
-					System.out.println(setNum);
-					
 				}							
 			}		    	
 		  });
@@ -188,6 +207,13 @@ public class QuizPanel extends Application {
 					System.err.println("Exception: " + e);
 				}
 			}
+	    });
+	    
+	    btnExit.setOnAction(new EventHandler<ActionEvent>() {
+	    	@Override
+	    	public void handle(ActionEvent event) {
+	    		primaryStage.close();
+	    	}
 	    });
 	}
 	

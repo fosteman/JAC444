@@ -1,36 +1,90 @@
+/**********************************************
+
+Workshop #7
+
+Course:JAC444 - Winter Semester
+
+Last Name: Lee
+
+First Name: Hyunji
+
+ID: 145732178
+
+Section: SCC
+
+This assignment represents my own work in accordance with Seneca Academic Policy.
+
+Signature Hyunji Lee
+
+Date: 29/3/2019
+
+**********************************************/
+
 package com.senecacollege.workshop7.task2;
 
 public class ParallelAdd implements Runnable {
 	double matrix1[][];
 	double matrix2[][];
 	int size;
-	double sum;
-	int threadID;
+	int start;
+	int end;
+	public static double sum[][];
 	
-	public ParallelAdd(double m1[][], double m2[][], int threadId) {
+	public ParallelAdd(double m1[][], double m2[][]) {
 		matrix1 = m1;
 		matrix2 = m2;
-		threadID = threadId;
-		size = matrix1.length;
-		sum = 0;
+		size = m1.length;
+		sum = new double[size][size];
+	}
+	
+	public ParallelAdd(double m1[][], double m2[][], int start, int end) {
+		matrix1 = m1;
+		matrix2 = m2;
+		this.size = m1.length;
+		this.start = start;
+		this.end = end;
+		sum = new double[size][size];
 	}
 	
 	@Override
 	public void run() {
-		int colStart = (int)((threadID % 2) * (size / 2));
-		int rowStart = (int)((int)(threadID / 2) * (size / 2));
-		int colEnd = colStart + (int)(size / 2);
-		int rowEnd = rowStart + (int)(size / 2);
-		
-		for(int i = colStart; i < colEnd; i++) {
-			for(int j = rowStart; j < rowEnd; j++) {
-				sum += matrix1[i][j] + matrix2[i][j];
+		for(int i = this.start; i < this.end; i++) {
+			for(int j = 0; j < matrix1.length; j++) {
+				sum[i][j] = matrix1[i][j] + matrix2[i][j];
 			}
 		}
 	}
 	
-	public double getSum() {
-		return this.sum;
+	public static double[][] parallelAddMatrix(double[][] m1, double[][] m2){
+		long startTime, endTime;
+		int arrayLength = m1.length;
+		double sum[][] = new double[arrayLength][arrayLength];
+		
+		ParallelAdd parallel1 = new ParallelAdd(m1, m2, 0, arrayLength/4 - 1);
+		ParallelAdd parallel2 = new ParallelAdd(m1, m2, arrayLength / 4, arrayLength / 2 - 1);
+		ParallelAdd parallel3 = new ParallelAdd(m1, m2, arrayLength / 2, arrayLength / 4 * 3 - 1);
+		ParallelAdd parallel4 = new ParallelAdd(m1, m2, arrayLength / 4 * 3, arrayLength - 1);
+		
+		Thread t1 = new Thread(parallel1);
+		Thread t2 = new Thread(parallel2);
+		Thread t3 = new Thread(parallel3);
+		Thread t4 = new Thread(parallel4);
+		
+		startTime = System.nanoTime();
+		t1.start();
+		t2.start();
+		t3.start();
+		t4.start();
+		
+		endTime = System.nanoTime();
+		
+		System.out.println("Parallel time:\t" + (endTime - startTime));
+		
+		return sum;
 	}
-
+	
+	public void displayParallelTime() {
+		parallelAddMatrix(matrix1, matrix2);
+	}
 }
+
