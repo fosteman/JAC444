@@ -38,3 +38,9 @@ JavaFX, Error Handling
 : AddressBook.java, AddressInfo.java, RememberSeek.java
 - Package com.senecacollege.workshop5.task3: Make a connect four game
 : ConnectFour.java
+
+### Wotkshop6
+JavaFX
+
+### Workshop7
+Thread
