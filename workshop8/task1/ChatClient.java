@@ -5,13 +5,14 @@ import java.net.*;
 import java.util.Scanner;
 
 public class ChatClient {
-	
+
 	public static void main(String[] args)
 	{
+		final int port = 5500;
 		String clientName;
 		Scanner scanner = new Scanner(System.in);
 		try {
-			Socket sock = new Socket("localhost",444);
+			Socket sock = new Socket("localhost",port);
 			
 			System.out.print("What is your name: ");
 			clientName = scanner.next();
@@ -43,7 +44,7 @@ class RecieveThread implements Runnable
 		String msgRecieved = null;
 		while((msgRecieved = recieve.readLine())!= null)
 		{
-			System.out.println("From Server: " + msgRecieved);
+			System.out.println(msgRecieved);
 			System.out.println("Please enter something to send to server..");
 		}
 		}catch(Exception e){System.out.println(e.getMessage());}
