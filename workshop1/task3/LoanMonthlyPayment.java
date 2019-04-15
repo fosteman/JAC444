@@ -1,3 +1,5 @@
+package com.senecacollege.task3;
+
 import java.util.Scanner;
 
 public class LoanMonthlyPayment {
