@@ -1,24 +1,61 @@
 package com.senecacollege.task3;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LoanMonthlyPayment {
-
-	public static void main(String[] args) {
-
-		Scanner input = new Scanner(System.in);
+	int numberOfYears;
+	double rate, monthlyInterestRate, monthlyPayment;
+	double interest, principal, balance;
 	
-		System.out.print("Loan Amount: ");
-		double balance = input.nextDouble();
-		System.out.print("Number of Years: ");
-		int numberOfYears = input.nextInt();
-		System.out.print("Annual Interest Rate: ");
-		double rate = input.nextInt();		
+	public void inputData() {
+		Scanner input = new Scanner(System.in);
+		boolean flag = true;
 		
-		double monthlyInterestRate = rate / 1200;		
+		while(flag) {
+			System.out.print("Loan Amount: ");
+			try{
+				balance = input.nextDouble();
+				flag = false;
+			}catch(InputMismatchException e) {
+				flag = true;
+				System.err.println("Please input right number");
+				input.nextLine();
+			}
+		}
+		
+		flag = true;
+		while(flag) {
+			System.out.print("Number of Years: ");
+			try{
+				numberOfYears = input.nextInt();
+				flag = false;
+			}catch(InputMismatchException e) {
+				flag = true;
+				System.err.println("Please input right number");
+				input.nextLine();
+			}
+		}
+		
+		flag = true;
+		while(flag) {
+			System.out.print("Annual Interest Rate: ");
+			try{
+				rate = input.nextInt();
+				flag = false;
+			}catch(InputMismatchException e) {
+				flag = true;
+				System.err.println("Please input right number");
+				input.nextLine();
+			}
+		}
+	}
+	
+	public void calculate() {
+		monthlyInterestRate = rate / 1200;		
 		int i;
-		double interest, principal;
-		double monthlyPayment = balance * (monthlyInterestRate / (1 - Math.pow(1 + monthlyInterestRate,-(numberOfYears * 12))));
+		
+		monthlyPayment = balance * (monthlyInterestRate / (1 - Math.pow(1 + monthlyInterestRate,-(numberOfYears * 12))));
 		
 		System.out.printf("\nMonthly Payment: %.2f\n", monthlyPayment);
 		System.out.printf("Total Payment: %.2f\n", monthlyPayment * numberOfYears * 12);
@@ -35,6 +72,11 @@ public class LoanMonthlyPayment {
 			}
 			System.out.printf("%d\t\t%.2f\t\t%.2f\t\t%.2f\n", i, interest, principal, balance);
 		}
+	}
+
+	public void display() {
+		inputData();
+		calculate();	
 	}
 
 }

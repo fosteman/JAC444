@@ -14,6 +14,9 @@ public class TesterClass {
 		
 		ZellerCongruence zeller = new ZellerCongruence();
 		zeller.calDayOfWeek();
+		
+		LoanMonthlyPayment payment = new LoanMonthlyPayment();
+		payment.display();
 	}
 
 }
